@@ -19,9 +19,9 @@ const e = (config: Config) => {
   };
 
   const start = () => {
-    const port = app.get("port");
+    const port = app.get("port") as number | string;
     app.listen(port, () => {
-      // tslint:disable-next-line:no-console
+      // eslint-disable-next-line no-console
       console.log(`Servidor iniciado: http://localhost:${port}.`);
     });
   };

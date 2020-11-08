@@ -8,7 +8,7 @@ function getDefaultConfig(env: string): DefaultConfig {
   return {
     dev: env === "development",
     network: process.env.NETWORK || "None",
-    server: process.env.SERVER,
+    server: process.env.SERVER || "None",
   };
 }
 

@@ -2,5 +2,5 @@
   "watch": ["src"],
   "ext": "ts,json",
   "ignore": ["src/**/*.spec.ts"],
-  "exec": "yarn start"
+  "exec": "tsc -p ./tsconfig.json && node ./dist/index.js"
 }

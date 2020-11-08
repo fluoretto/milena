@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
           Servidor:
           <ul>
             <li>Network: ${network}</li>
-            <li>Servidor: <span style="color: #ffbf00">${server}</span></li>
+            <li>Servidor: ${server}</li>
           </ul>
         </strong>
       </p>
