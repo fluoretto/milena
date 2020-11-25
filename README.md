@@ -33,7 +33,7 @@ First, copy `docker-compose.dev.yml` to `docker-compose.override.yml`.
 $ cp docker-compose.dev.yml docker-compose.override.yml
 ```
 
-Add the required secrets into `./secrets` directory.
+Add the required secrets into `./secrets` directory. Detailed instructions for this step is available [here](./secrets).
 
 Run `yarn` to install dependencies.
 
@@ -41,4 +41,4 @@ Run `docker-compose up` to run Milena.
 
 ### Documentation
 
-Check docs [here](./docs/assets/README.md).
+Check docs [here](./docs).
