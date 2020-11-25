@@ -9,7 +9,7 @@
    "scripts": {
       "clean": "rm -rf build",
       "build": "tsc",
-      "start": "ts-node src/index.ts",
+      "start": "node ./build/index.js",
       "dev": "nodemon"
    },
    "devDependencies": {
