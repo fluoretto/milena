@@ -23,8 +23,6 @@ services:
     image: mysql:8
     ports:
       - "3306:3306"
-    expose:
-      - "3306"
     volumes:
       - milena_storage:/var/lib/mysql
     environment:
