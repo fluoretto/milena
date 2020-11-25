@@ -51,8 +51,6 @@ services:
       - redis
       - mysql
     restart: unless-stopped
-    volumes:
-      - .:/usr/app/backend
     environment:
       NETWORK: Milena
       SERVER: Local
