@@ -31,7 +31,7 @@ $ openssl rsa -in sign_private_key.secret -pubout > sign_public_key.secret
 
 - `mailgun_apikey.secret`:
 
-> This secret is not needed for local development.
+> This secret is not needed for local development. Your e-mails won't be sent anyway. Login into Redis to check for e-mail data.
 
 Add your Mailgun API Key here in following format:
 
