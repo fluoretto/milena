@@ -1,41 +1,57 @@
 {
-  "name": "milena-auth",
-  "version": "0.1.0",
-  "description": "Sistema de Autenticação da Fluoretto",
-  "main": "dist/index.js",
-  "repository": "git@github.com:fluoretto/milena-auth.git",
-  "author": "Kayky de Brito <oss@kaykyb.com>",
-  "license": "MIT",
-  "scripts": {
-    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
-    "build": "tsc",
-    "start": "node .",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon"
-  },
-  "devDependencies": {
-    "@types/express": "^4.17.8",
-    "@types/lodash": "^4.14.164",
-    "@types/morgan": "^1.9.2",
-    "@types/node": "^14.14.6",
-    "@typescript-eslint/eslint-plugin": "^4.6.1",
-    "@typescript-eslint/parser": "^4.6.1",
-    "eslint": "^7.13.0",
-    "eslint-config-prettier": "^6.15.0",
-    "eslint-plugin-jsdoc": "^30.7.7",
-    "eslint-plugin-prefer-arrow": "^1.2.2",
-    "nodemon": "^2.0.6",
-    "typescript": "^4.0.5"
-  },
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "lodash": "^4.17.20",
-    "module-alias": "^2.2.2",
-    "morgan": "^1.10.0"
-  },
-  "_moduleAliases": {
-    "@root": "dist"
-  }
+   "name": "milena-auth",
+   "version": "0.1.0",
+   "description": "Sistema de Autenticação da Fluoretto",
+   "main": "build/index.js",
+   "repository": "git@github.com:fluoretto/milena-auth.git",
+   "author": "Kayky de Brito <oss@kaykyb.com>",
+   "license": "MIT",
+   "scripts": {
+      "clean": "rm -rf build",
+      "build": "tsc",
+      "start": "ts-node src/index.ts",
+      "dev": "nodemon"
+   },
+   "devDependencies": {
+      "@types/express": "^4.17.8",
+      "@types/express-jwt": "^0.0.42",
+      "@types/jsonwebtoken": "^8.5.0",
+      "@types/lodash": "^4.14.164",
+      "@types/mailgun-js": "^0.22.11",
+      "@types/morgan": "^1.9.2",
+      "@types/node": "^14.14.6",
+      "@types/redis": "^2.8.28",
+      "@types/validator": "^13.1.0",
+      "@typescript-eslint/eslint-plugin": "^4.6.1",
+      "@typescript-eslint/parser": "^4.6.1",
+      "eslint": "^7.13.0",
+      "eslint-config-prettier": "^6.15.0",
+      "eslint-plugin-jsdoc": "^30.7.7",
+      "eslint-plugin-prefer-arrow": "^1.2.2",
+      "nodemon": "^2.0.6",
+      "ts-node": "^9.0.0",
+      "typescript": "^4.0.5"
+   },
+   "dependencies": {
+      "body-parser": "^1.19.0",
+      "class-validator": "^0.12.2",
+      "dotenv": "^8.2.0",
+      "express": "^4.17.1",
+      "express-jwt": "^6.0.0",
+      "express-validator": "^6.6.1",
+      "helmet": "^4.2.0",
+      "jsonwebtoken": "^8.5.1",
+      "lodash": "^4.17.20",
+      "mailgun-js": "^0.22.0",
+      "module-alias": "^2.2.2",
+      "morgan": "^1.10.0",
+      "mysql2": "^2.2.5",
+      "redis": "^3.0.2",
+      "reflect-metadata": "^0.1.10",
+      "tslib": "^2.0.3",
+      "typeorm": "0.2.29"
+   },
+   "_moduleAliases": {
+      "@root": "build"
+   }
 }

@@ -1,13 +1,58 @@
-version: "3"
+version: "3.8"
+
+volumes:
+  milena_storage:
+
+secrets:
+  sign_private_key:
+    file: ./secrets/sign_private_key.secret
+  sign_public_key:
+    file: ./secrets/sign_public_key.secret
+  mysql_password:
+    file: ./secrets/mysql_password.secret
+  mailgun_apikey:
+    file: ./secrets/mailgun_apikey.secret
 
 services:
+  redis:
+    image: "redis:6.0"
+    ports:
+      - "6379:6379"
+
+  mysql:
+    image: mysql:8
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    volumes:
+      - milena_storage:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_password
+      MYSQL_DATABASE: milena_db
+    secrets:
+      - mysql_password
+
   backend:
     build: .
     command: yarn start
     ports:
-      - 4000:4000
+      - "4000:4000"
+    depends_on:
+      - redis
+      - mysql
+    restart: on-failure
     volumes:
       - .:/usr/app/backend
     environment:
       NETWORK: Milena
       SERVER: Local
+      NODE_ENV: production
+      MYSQL_DATABASE: milena_db
+      MYSQL_HOST: mysql
+      REDIS_HOST: redis
+    secrets:
+      - sign_private_key
+      - sign_public_key
+      - mysql_password
+      - mailgun_apikey

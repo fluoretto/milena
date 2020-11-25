@@ -1,12 +1,7 @@
-import dotenv from "dotenv";
 import "module-alias/register";
+import "reflect-metadata";
 
-import getConfig from "@root/config";
-import server from "@root/server";
+import app from "@root/services/app";
 
-dotenv.config();
-const config = getConfig();
-
-const app = server(config);
 app.create();
 app.start();
