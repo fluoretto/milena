@@ -19,7 +19,7 @@ a unique, seamless user experience.
 
 ### Requirements
 
-To run Milena in your machine, you must have installed
+To run Milena in your machine, you must have installed:
 
 - [Docker](https://www.docker.com/)
 - [Node.JS 12+](https://nodejs.org/en/)
@@ -39,6 +39,6 @@ Run `yarn` to install dependencies.
 
 Run `docker-compose up` to run Milena.
 
-### Documentation
+## Documentation
 
 Check docs [here](./docs).
