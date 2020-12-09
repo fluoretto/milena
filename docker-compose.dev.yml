@@ -2,6 +2,11 @@ version: "3.8"
 
 volumes:
   milena_storage:
+    driver: local
+
+networks:
+  milena-network:
+    driver: bridge
 
 secrets:
   sign_private_key:
@@ -18,35 +23,39 @@ services:
     image: "redis:6.0"
     ports:
       - "6379:6379"
+    restart: unless-stopped
+    networks:
+      - milena-network
 
   mysql:
     image: mysql:8
     ports:
       - "3306:3306"
+    restart: unless-stopped
     volumes:
       - milena_storage:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_password
-      MYSQL_DATABASE: milena_db
+      MYSQL_DATABASE: milena_dev
     secrets:
       - mysql_password
+    networks:
+      - milena-network
 
   backend:
     build: .
-    command: yarn run dev
+    command: yarn start
     ports:
       - "4000:4000"
     depends_on:
       - redis
       - mysql
-    restart: on-failure
-    volumes:
-      - .:/usr/app/backend
+    restart: unless-stopped
     environment:
       NETWORK: Milena
       SERVER: Local
-      NODE_ENV: development
-      MYSQL_DATABASE: milena_db
+      NODE_ENV: production
+      MYSQL_DATABASE: milena_dev
       MYSQL_HOST: mysql
       REDIS_HOST: redis
     secrets:
@@ -54,3 +63,5 @@ services:
       - sign_public_key
       - mysql_password
       - mailgun_apikey
+    networks:
+      - milena-network

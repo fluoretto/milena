@@ -10,11 +10,15 @@
       "clean": "rm -rf build",
       "build": "tsc",
       "start": "node ./build/index.js",
-      "dev": "nodemon"
+      "dev": "nodemon",
+      "docker:dev": "docker-compose -f ./docker-compose.dev.yml up",
+      "docker:start": "docker-compose up",
+      "migrate:create": "rm -f ormconfig.json && ts-node ./scripts/generateORMConfig.ts && ts-node ./scripts/generateMigration.ts && rm -f ormconfig.json"
    },
    "devDependencies": {
       "@types/express": "^4.17.8",
       "@types/express-jwt": "^0.0.42",
+      "@types/js-yaml": "^3.12.5",
       "@types/jsonwebtoken": "^8.5.0",
       "@types/lodash": "^4.14.164",
       "@types/mailgun-js": "^0.22.11",
@@ -40,6 +44,7 @@
       "express-jwt": "^6.0.0",
       "express-validator": "^6.6.1",
       "helmet": "^4.2.0",
+      "js-yaml": "^3.14.1",
       "jsonwebtoken": "^8.5.1",
       "lodash": "^4.17.20",
       "mailgun-js": "^0.22.0",
