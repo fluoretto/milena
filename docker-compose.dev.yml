@@ -23,7 +23,7 @@ services:
     image: "redis:6.0"
     ports:
       - "6379:6379"
-    restart: unless-stopped
+    restart: on-failure
     networks:
       - milena-network
 
@@ -31,7 +31,7 @@ services:
     image: mysql:8
     ports:
       - "3306:3306"
-    restart: unless-stopped
+    restart: on-failure
     volumes:
       - milena_storage:/var/lib/mysql
     environment:
@@ -50,7 +50,7 @@ services:
     depends_on:
       - redis
       - mysql
-    restart: unless-stopped
+    restart: on-failure
     environment:
       NETWORK: Milena
       SERVER: Local
