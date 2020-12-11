@@ -14,9 +14,9 @@
       "dev": "nodemon",
       "run-jest": "jest",
       "test": "ts-node ./scripts/runTest.ts",
-      "docker:dev": "docker-compose -f ./docker-compose.dev.yml up",
-      "docker:test": "docker-compose -f ./docker-compose.test.yml up",
-      "docker:start": "docker-compose up",
+      "docker:dev": "docker-compose -f ./docker/docker-compose.dev.yml up",
+      "docker:test": "docker-compose -f ./docker/docker-compose.test.yml up",
+      "docker:start": "docker-compose -f ./docker/docker-compose.yml up",
       "migrate:create": "rm -f ormconfig.json && ts-node ./scripts/generateORMConfig.ts && ts-node ./scripts/generateMigration.ts && rm -f ormconfig.json"
    },
    "devDependencies": {

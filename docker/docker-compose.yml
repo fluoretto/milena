@@ -10,17 +10,18 @@ networks:
 
 secrets:
   sign_private_key:
-    file: ./secrets/sign_private_key.secret
+    file: ../secrets/sign_private_key.secret
   sign_public_key:
-    file: ./secrets/sign_public_key.secret
+    file: ../secrets/sign_public_key.secret
   mysql_password:
-    file: ./secrets/mysql_password.secret
+    file: ../secrets/mysql_password.secret
   mailgun_apikey:
-    file: ./secrets/mailgun_apikey.secret
+    file: ../secrets/mailgun_apikey.secret
 
 services:
   redis:
     image: "redis:6.0"
+    container_name: milena_redis
     expose:
       - "6379"
     restart: unless-stopped
@@ -29,6 +30,7 @@ services:
 
   mysql:
     image: mysql:8
+    container_name: milena_mysql
     expose:
       - "3306"
     restart: unless-stopped
@@ -45,6 +47,7 @@ services:
   backend:
     build: .
     image: milena_backend:prod
+    container_name: milena_backend
     command: yarn start
     ports:
       - "4000:4000"

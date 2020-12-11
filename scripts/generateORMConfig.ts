@@ -7,7 +7,7 @@ const mysqlPassword = fs.readFileSync(
 );
 
 const dockerComposeContent = fs.readFileSync(
-  "./docker-compose.dev.yml",
+  "./docker/docker-compose.dev.yml",
   "utf8"
 );
 const dockerCompose = yaml.safeLoad(dockerComposeContent) as any;
