@@ -1,11 +1,11 @@
 version: "3.8"
 
 volumes:
-  milena_storage:
+  milena_storage_test:
     driver: local
 
 networks:
-  milena-network:
+  milena-network-test:
     driver: bridge
 
 secrets:
@@ -19,54 +19,55 @@ secrets:
     file: ./secrets/mailgun_apikey.secret
 
 services:
-  redis:
+  redis_test:
     image: "redis:6.0"
-    ports:
-      - "6379:6379"
-    restart: on-failure
+    expose:
+      - "6379"
     networks:
-      - milena-network
+      - milena-network-test
+    logging:
+      driver: "none"
 
-  mysql:
+  mysql_test:
     image: mysql:8
-    ports:
-      - "3306:3306"
-    restart: on-failure
+    expose:
+      - "3306"
     volumes:
-      - milena_storage:/var/lib/mysql
+      - milena_storage_test:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_password
-      MYSQL_DATABASE: milena_dev
+      MYSQL_DATABASE: milena_test
     secrets:
       - mysql_password
     networks:
-      - milena-network
+      - milena-network-test
+    logging:
+      driver: "none"
 
-  backend:
+  backend_test:
     build:
       context: .
-      dockerfile: ./Dockerfile.dev
-    image: milena_backend:dev
-    command: yarn run dev
-    ports:
-      - "4000:4000"
+      dockerfile: ./Dockerfile.test
+    image: milena_backend:test
+    command: yarn run run-jest
+    expose:
+      - "4000"
     depends_on:
-      - redis
-      - mysql
-    restart: on-failure
+      - redis_test
+      - mysql_test
     volumes:
       - .:/usr/app/backend
     environment:
       NETWORK: Milena
-      SERVER: Local
-      NODE_ENV: production
-      MYSQL_DATABASE: milena_dev
-      MYSQL_HOST: mysql
-      REDIS_HOST: redis
+      SERVER: Test
+      NODE_ENV: development
+      MYSQL_DATABASE: milena_test
+      MYSQL_HOST: mysql_test
+      REDIS_HOST: redis_test
     secrets:
       - sign_private_key
       - sign_public_key
       - mysql_password
       - mailgun_apikey
     networks:
-      - milena-network
+      - milena-network-test

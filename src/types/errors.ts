@@ -13,7 +13,7 @@ export class MilenaError extends Error {
   statusCode: number = 500;
 }
 
-class FlowNotStarted extends MilenaError {
+export class FlowNotStarted extends MilenaError {
   constructor(message: any, context: ErrorContext) {
     super(message);
 
@@ -23,7 +23,7 @@ class FlowNotStarted extends MilenaError {
   }
 }
 
-class CodeDoesntMatch extends MilenaError {
+export class CodeDoesntMatch extends MilenaError {
   constructor(message: any, context: ErrorContext) {
     super(message);
 
@@ -34,7 +34,7 @@ class CodeDoesntMatch extends MilenaError {
   }
 }
 
-class TokenExpired extends MilenaError {
+export class TokenExpired extends MilenaError {
   constructor(message: any, context: ErrorContext) {
     super(message);
 
@@ -45,7 +45,7 @@ class TokenExpired extends MilenaError {
   }
 }
 
-class TokenFlooded extends MilenaError {
+export class TokenFlooded extends MilenaError {
   constructor(message: any, context: ErrorContext) {
     super(message);
 
@@ -56,7 +56,7 @@ class TokenFlooded extends MilenaError {
   }
 }
 
-class InternalError extends MilenaError {
+export class InternalError extends MilenaError {
   constructor(message: any, context: ErrorContext) {
     super(message);
 
@@ -67,7 +67,7 @@ class InternalError extends MilenaError {
   }
 }
 
-class IncorrectArgsError extends MilenaError {
+export class IncorrectArgsError extends MilenaError {
   constructor(message: any, context: ErrorContext) {
     super(message);
 
@@ -78,7 +78,7 @@ class IncorrectArgsError extends MilenaError {
   }
 }
 
-class NoPermissionError extends MilenaError {
+export class NoPermissionError extends MilenaError {
   constructor(message: any, context: ErrorContext) {
     super(message);
 

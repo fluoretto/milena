@@ -14,8 +14,14 @@ connectionManager.create({
   username: "root",
   password: config.dbPassword,
   database: config.dbName,
-  entities: [path.join(__dirname, "../entity/**/*.js")],
-  migrations: [path.join(__dirname, "../migration/**/*.js")],
+  entities: [
+    path.join(__dirname, "../entity/**/*.js"),
+    path.join(__dirname, "../entity/**/*.ts"),
+  ],
+  migrations: [
+    path.join(__dirname, "../migration/**/*.js"),
+    path.join(__dirname, "../migration/**/*.ts"),
+  ],
   migrationsRun: true,
 });
 
@@ -23,9 +29,19 @@ export const getDatabase = () => connectionManager.get();
 
 export const startDatabase = async () => {
   const db = getDatabase();
-  await db.connect();
+
+  try {
+    await db.connect();
+  } catch {
+    await startDatabase();
+  }
 
   // Seed Apps
   const claimerRepo = db.getRepository(Claimer);
   await claimerRepo.save(getClaimers());
+};
+
+export const endDatabase = async () => {
+  const db = getDatabase();
+  await db.close();
 };

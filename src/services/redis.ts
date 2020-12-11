@@ -20,4 +20,8 @@ export const getAsync = async (key: string) =>
 export const delAsync = async (key: string) =>
   await promisify(redis.del).bind(redis)(key);
 
+export const closeRedis = () => {
+  redis.quit();
+};
+
 export default redis;

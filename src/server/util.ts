@@ -1,5 +1,5 @@
 import { Module, Service } from "@root/types";
-import errors from "@root/types/errors";
+import { IncorrectArgsError } from "@root/types/errors";
 import express from "express";
 import { validationResult } from "express-validator";
 
@@ -17,7 +17,7 @@ export const respond = (
 };
 
 export const getIncorrectArgsError = (modu: Module, err: any) =>
-  new errors.IncorrectArgsError("Missing or incorrect arguments for endpoint", {
+  new IncorrectArgsError("Missing or incorrect arguments for endpoint", {
     originModule: modu,
     originService: Service.Server,
     additionalContext: err,

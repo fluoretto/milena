@@ -44,6 +44,7 @@ services:
 
   backend:
     build: .
+    image: milena_backend:prod
     command: yarn start
     ports:
       - "4000:4000"

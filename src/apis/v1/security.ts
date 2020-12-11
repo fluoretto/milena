@@ -14,6 +14,7 @@ export async function getClaimer(id: string, noCache?: boolean) {
   const claimerRepo = getDatabase().getRepository(Claimer);
   const obj = await claimerRepo.findOne({ id });
   await setWithExpiryAsync(`cached_claimers/${id}`, JSON.stringify(obj), 600);
+  return obj;
 }
 
 export async function getDefaultClaimer() {

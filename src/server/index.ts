@@ -4,7 +4,6 @@ import bodyParser from "body-parser";
 import logger from "morgan";
 import { Config } from "@root/types";
 import routes from "./routes";
-import { MilenaError } from "@root/types/errors";
 import { respond } from "./util";
 import { startDatabase } from "@root/services/typeorm";
 
@@ -67,6 +66,7 @@ const e = (config: Config) => {
   return {
     create,
     start,
+    router: app,
   };
 };
 
