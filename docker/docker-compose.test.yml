@@ -26,8 +26,6 @@ services:
       - "6379"
     networks:
       - milena-network-test
-    logging:
-      driver: "none"
 
   mysql_test:
     image: mysql:8
@@ -43,8 +41,6 @@ services:
       - mysql_password
     networks:
       - milena-network-test
-    logging:
-      driver: "none"
 
   backend_test:
     build:
