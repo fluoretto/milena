@@ -1,9 +1,5 @@
 version: "3.8"
 
-volumes:
-  milena_storage_test:
-    driver: local
-
 networks:
   milena-network-test:
     driver: bridge
@@ -32,8 +28,6 @@ services:
     container_name: milena_mysql_test
     expose:
       - "3306"
-    volumes:
-      - milena_storage_test:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_password
       MYSQL_DATABASE: milena_test
