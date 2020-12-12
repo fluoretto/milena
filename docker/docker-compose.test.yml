@@ -10,7 +10,7 @@ secrets:
   sign_public_key:
     file: ../secrets/sign_public_key.secret
   mysql_password:
-    file: ../secrets/mysql_password.secret
+    file: ../secrets/mysql_password.secret.example
   mailgun_apikey:
     file: ../secrets/mailgun_apikey.secret
 
