@@ -1,5 +1,10 @@
 <p align="center">
-  <img width="500px" src="./docs/assets/logo.png" />
+  <img width="500px" src="./docs/assets/logo.png" alt="Milena Auth" />
+</p>
+<hr>
+<p align="center">
+  <img alt="CI" src="https://github.com/fluoretto/milena/workflows/CI/badge.svg" />
+  <img alt="Docker Test" src="https://github.com/fluoretto/milena/workflows/Docker%20Test/badge.svg" />
 </p>
 <hr>
 <p align="center">
