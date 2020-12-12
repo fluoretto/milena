@@ -2,13 +2,12 @@ name: Docker Test
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -16,11 +15,20 @@ jobs:
         node-version: [12.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: yarn --frozen-lockfile
-    - run: yarn test
-    - run: docker ps -a
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Create secrets
+        run: |
+          cd secrets
+          cp mailgun_apikey.secret.example mailgun_apikey.secret
+          cp mysql_password.secret.example mysql_password.secret
+          openssl genrsa -out sign_private_key.secret 4096
+          openssl rsa -in sign_private_key.secret -pubout > sign_public_key.secret
+          cd ..
+      - name: Install deps
+        run: yarn --frozen-lockfile
+      - name: Run tests
+        run: yarn test
